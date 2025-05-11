@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gwent Card Tracker</title>
+  <style>
+    body {
+      background-color: #1b1b1b;
+      color: #f1c40f;
+      font-family: 'Segoe UI', sans-serif;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #444;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #2c2c2c;
+    }
+    tr:nth-child(even) {
+      background-color: #2a2a2a;
+    }
+    tr:hover {
+      background-color: #333;
+    }
+    input[type="checkbox"] {
+      transform: scale(1.2);
+    }
+    .progress-container {
+      background: #333;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 20px 0;
+      height: 20px;
+    }
+    .progress-bar {
+      height: 100%;
+      background: #f1c40f;
+      width: 0%;
+      transition: width 0.3s;
+    }
+  </style>
+</head>
+<body>
+  <h1>🃏 Gwent Tracker - Collect 'Em All</h1>
+  <div class="progress-container">
+    <div class="progress-bar" id="progressBar"></div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>✓</th>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Row</th>
+        <th>Str.</th>
+        <th>Ability</th>
+        <th>Source</th>
+      </tr>
+    </thead>
+    <tbody id="cardTableBody"></tbody>
+  </table>
+
+  <script>
+    const cards = [
+      {
+        name: "Ballista",
+        type: "Unit",
+        row: "",
+        strength: "6",
+        ability: "",
+        source: "Part of the base deck"
+      },
+      {
+        name: "Blue Stripes Commando",
+        type: "Unit",
+        row: "",
+        strength: "4",
+        ability: "Tight Bond: Place next to a card with the same name to double the strength of both cards.",
+        source: "1 purchased from Elsa or Bram in White Orchard\n1 from Crow's Perch quartermaster\n1 from Midcopse merchant"
+      },
+      {
+        name: "Catapult",
+        type: "Unit",
+        row: "",
+        strength: "8",
+        ability: "Tight Bond: Place next to a card with the same name to double the strength of both cards.",
+        source: "1 from Elsa/Bram in White Orchard\n1 from Marquise Serenity (Passiflora)\n1 from circus camp near Carsten"
+      },
+      {
+        name: "Crinfrid Reavers Dragon Hunter",
+        type: "Unit",
+        row: "",
+        strength: "5",
+        ability: "Tight Bond: Place next to a card with the same name to double the strength of both cards.",
+        source: "1 from Elsa/Bram in White Orchard\n1 from Claywich merchant\n1 from Midcopse merchant"
+      },
+      {
+        name: "Dethmold",
+        type: "Unit",
+        row: "",
+        strength: "6",
+        ability: "",
+        source: "Part of the base deck"
+      },
+      {
+        name: "Dun Banner Medic",
+        type: "Unit",
+        row: "",
+        strength: "5",
+        ability: "Medic: Choose one card from your discard pile and play it instantly (no Heroes or Special Cards).",
+        source: "Part of the base deck"
+      }
+    ];
+
+    const tableBody = document.getElementById("cardTableBody");
+    const progressBar = document.getElementById("progressBar");
+
+    function loadProgress() {
+      const saved = localStorage.getItem("gwentProgress");
+      return saved ? JSON.parse(saved) : {};
+    }
+
+    function saveProgress(progress) {
+      localStorage.setItem("gwentProgress", JSON.stringify(progress));
+    }
+
+    function updateProgressBar(progress) {
+      const total = cards.length;
+      const collected = Object.values(progress).filter(Boolean).length;
+      const percent = (collected / total) * 100;
+      progressBar.style.width = percent + "%";
+    }
+
+    function renderTable() {
+      const progress = loadProgress();
+      cards.forEach((card) => {
+        const isChecked = progress[card.name] || false;
+        const row = document.createElement("tr");
+
+        const checkboxCell = document.createElement("td");
+        const checkbox = document.createElement("input");
+        checkbox.type = "checkbox";
+        checkbox.checked = isChecked;
+        checkbox.addEventListener("change", () => {
+          progress[card.name] = checkbox.checked;
+          saveProgress(progress);
+          updateProgressBar(progress);
+        });
+        checkboxCell.appendChild(checkbox);
+
+        const nameCell = document.createElement("td");
+        nameCell.textContent = card.name;
+
+        const typeCell = document.createElement("td");
+        typeCell.textContent = card.type;
+
+        const rowCell = document.createElement("td");
+        rowCell.textContent = card.row;
+
+        const strCell = document.createElement("td");
+        strCell.textContent = card.strength;
+
+        const abilityCell = document.createElement("td");
+        abilityCell.textContent = card.ability;
+
+        const sourceCell = document.createElement("td");
+        sourceCell.textContent = card.source;
+
+        row.appendChild(checkboxCell);
+        row.appendChild(nameCell);
+        row.appendChild(typeCell);
+        row.appendChild(rowCell);
+        row.appendChild(strCell);
+        row.appendChild(abilityCell);
+        row.appendChild(sourceCell);
+
+        tableBody.appendChild(row);
+      });
+
+      updateProgressBar(progress);
+    }
+
+    renderTable();
+  </script>
+</body>
+</html>
