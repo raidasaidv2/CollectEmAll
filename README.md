@@ -16,7 +16,7 @@ To complete it, you must collect every single card of each type; a total of **12
 
 ## Missable Cards
 
-Throughout the game, some cards are easily missed if a player chooses one action over another, skips a side quest, or simply does not explore. Here's a list of such cases:
+Throughout the game, some cards are easily missed if a player chooses one action over another, skips a side quest, or simply does not explore.
 
 ## Journal Entry
 
