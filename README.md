@@ -20,7 +20,7 @@ Throughout the game, some cards are easily missed if a player chooses one action
 
 ## Journal Entry
 
-> In his previous adventures, Geralt had gained fame as a master dice poker player. Yet having mastered all challengers in this arena, he had no choice but to find another in which to garner more laurels. He thus decided to take up gwent, and since he aimed to play at the highest levels, he felt he had to gather a complete collection of all the cards available – including some which could only be had by winning them off the best players around.
+> ...
 
 ## Objectives
 
@@ -28,7 +28,7 @@ Throughout the game, some cards are easily missed if a player chooses one action
 
 ## Trivia
 
-- The name of the quest is a homage to Pokémon's catchphrase **"Gotta Catch 'Em All"**.
+...
 
 ## Notes
 
