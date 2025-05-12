@@ -24,7 +24,7 @@ Throughout the game, some cards are easily missed if a player chooses one action
 
 ## Objectives
 
-- Complete your collection of gwent cards.
+- Complete your collection of cards.
 
 ## Trivia
 
