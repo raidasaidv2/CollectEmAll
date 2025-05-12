@@ -33,3 +33,4 @@ Throughout the game, some cards are easily missed if a player chooses one action
 ## Notes
 
 - This quest does not require the collection of gwent cards added by the expansion packs.
+- Will be adding the rest of the decks later xoxo
